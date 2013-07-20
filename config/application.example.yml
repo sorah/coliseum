@@ -9,3 +9,9 @@ development:
 
 production:
   <<: *defaults
+
+test:
+  credentials:
+    github:
+      token: NIL
+      secret: NIL

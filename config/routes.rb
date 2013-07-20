@@ -1,4 +1,15 @@
 Coliseum::Application.routes.draw do
+  resources :users, except: %i(create new) do
+    member do
+      put 'promote' => :promote
+      put 'demote' => :demote
+    end
+
+    collection do
+      get 'me' => :me
+    end
+  end
+
   resources :sessions, only: %i(new destroy) do
     get 'signout' => :signout
   end

@@ -1,0 +1,24 @@
+%section.user_panel.clearfix
+  .icon
+    %img{src: @user.image_url}
+  .float_left
+    %header
+      %h2.name= @user.shown_name
+      .badges
+        - if @user.staff?
+          %span.badge.blue STAFF
+
+    - if current_user.try(:staff?)
+      - if current_user == @user
+        (You can't demote yourself)
+      - elsif @user.staff?
+        = link_to 'Demote this user from staff',
+                    demote_user_path(@user), method: :put
+      - else
+        = link_to 'Promote this user to staff',
+                  promote_user_path(@user), method: :put
+
+
+%section.submissions
+  %header
+    %h3 Submissions

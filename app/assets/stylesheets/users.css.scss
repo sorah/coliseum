@@ -1,0 +1,25 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user_panel {
+  header {
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin: 0px;
+  }
+
+  .icon {
+    width: 60px;
+
+    img {
+      height: auto;
+      max-width: 60px;
+    }
+
+    float: left;
+    margin-right: 30px;
+  }
+}

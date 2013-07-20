@@ -1,4 +1,14 @@
 Coliseum::Application.routes.draw do
+  resource :sessions, only: %i(new destroy) do
+    get 'signout' => :signout
+  end
+
+  scope :auth, controller: 'sessions' do
+    get 'failure' => :auth_failure, as: :auth_failure
+    get ':provider/callback' => :auth_callback, as: :auth_callback
+    post ':provider/callback' => :auth_callback
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

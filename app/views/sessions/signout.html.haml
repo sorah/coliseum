@@ -1,0 +1,5 @@
+- if current_user
+  %p You're currently signed in as #{current_user.shown_name}
+  = link_to 'Sign out', sessions_path, method: 'delete'
+- else
+  %p Who are you?

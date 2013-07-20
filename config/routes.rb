@@ -1,5 +1,5 @@
 Coliseum::Application.routes.draw do
-  resource :sessions, only: %i(new destroy) do
+  resources :sessions, only: %i(new destroy) do
     get 'signout' => :signout
   end
 

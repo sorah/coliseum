@@ -1,0 +1,11 @@
+defaults: &defaults
+  credentials:
+    github:
+      token: CLIENT_ID
+      secret: CLIENT_SECRET
+
+development:
+  <<: *defaults
+
+production:
+  <<: *defaults

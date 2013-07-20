@@ -1,0 +1,69 @@
+@import "base.scss";
+
+* {
+  font-size: 17px;
+  color: $base_color;
+}
+
+h2 { font-size: 2.0em; }
+h3 { font-size: 1.6em; }
+h4 { font-size: 1.2em; }
+h5 { font-size: 1.1em; }
+h6 { font-size: 1.0em; }
+
+body {
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+pre, code {
+  font-family: 'Source Code Pro', 'Monaco', monospace;
+}
+
+#container {
+  width: $width;
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+
+  & > header {
+    height: 90px;
+    margin-bottom: 50px;
+
+    .logo {
+      font-size: 58px;
+      text-transform: uppercase;
+      text-shadow: mix($base_color, #ccc, 30%) 0px -1px 0px;
+      font-weight: bold;
+      margin-bottom: -10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: normal;
+    }
+  }
+}
+
+.clearfix {
+  &:before, &:after { content: " "; display: table; }
+  &:after { clear: both; }
+  *zoom: 1;
+}
+
+.float_left {
+  float: left;
+}
+
+.badge {
+  color: white;
+  border-radius: 2px;
+  padding: 2px 3px;
+  font-size: 0.7em;
+  text-transform: uppercase;
+
+  &.blue {
+    background-color: $blue_color;
+    text-shadow: darken($blue_color, 30%) 0px -1px 0px;
+  }
+}

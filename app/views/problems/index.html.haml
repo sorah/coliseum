@@ -1,0 +1,20 @@
+- content_for(:title) { 'Problems' }
+
+%section.problems
+  %header
+    %h2 Problems
+
+  - if current_user.try(:staff?)
+    %div{style: 'margin-bottom: 15px'}
+      = link_to 'New Problem', new_problem_path, class: 'button action'
+
+  %nav.list
+    - @problems.each do |problem|
+      .row.clearfix
+        = link_to problem.title, problem
+        - if current_user.try(:staff?)
+          .float_right
+            = link_to 'Edit', edit_problem_path(problem)
+            = link_to 'Destroy', problem, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+

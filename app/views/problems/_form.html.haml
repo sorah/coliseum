@@ -1,0 +1,33 @@
+= form_for @problem do |f|
+  - if @problem.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@problem.errors.count, "error")} prohibited this problem from being saved:"
+      %ul
+        - @problem.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field.block
+    = f.label :title
+    = f.text_field :title
+  .field.block
+    = f.label :body
+    = f.text_area :body
+  .field.block.multiple
+    = label_tag 'Tests'
+    = f.fields_for :test_examples do |fields|
+      .field.line.multiple.clearfix
+        = fields.text_field :input, placeholder: 'input', class: 'span5'
+        = fields.text_field :tester, placeholder: 'tester', class: 'span5'
+    .field.line.multiple.clearfix
+      = f.fields_for :test_examples, TestExample.new({}, @problem.test_examples.size), child_index: @problem.test_examples.size do |fields|
+        = fields.text_field :input, placeholder: 'input', class: 'span5'
+        = fields.text_field :tester, placeholder: 'tester', class: 'span5'
+
+  .field.block
+    = f.label :source
+    = f.text_field :source
+  .field.block
+    = f.label :copyright
+    = f.text_field :copyright
+  .actions
+    = f.submit 'Save'

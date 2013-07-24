@@ -5,20 +5,50 @@
   color: $base_color;
 }
 
+a {
+  color: $link_color;
+}
+
 h2 { font-size: 2.0em; }
-h3 { font-size: 1.6em; }
-h4 { font-size: 1.2em; }
-h5 { font-size: 1.1em; }
-h6 { font-size: 1.0em; }
+h3 {
+  font-size: 1.6em;
+  border-bottom: 1px solid $gray_color;
+  padding-bottom: 3px;
+
+}
+h4 {
+  font-size: 1.2em;
+  border-left: 8px solid lighten($gray_color, 10%);
+  padding-left: 12px;
+}
+h5 {
+  padding-left: 12px;
+  margin-top: 4px;
+  margin-bottom: 6px;
+  font-size: 1.1em;
+}
+h6 {
+  padding-left: 12px;
+  font-size: 1.0em;
+}
 
 body {
   text-align: center;
   font-family: 'Source Sans Pro', sans-serif;
 }
 
-pre, code {
+pre, code, .code {
   font-family: 'Source Code Pro', 'Monaco', monospace;
 }
+
+pre {
+  padding: 6px 5px;
+  border-radius: 3px;
+  border: 1px solid $gray_color;
+  box-shadow: 0px 0px 2px lighten($gray_color, 15%);
+  overflow-x: scroll;
+}
+
 
 #container {
   width: $width;
@@ -51,8 +81,64 @@ pre, code {
   *zoom: 1;
 }
 
+.hidden, .template {
+  display: none;
+}
+
+.field.block {
+  margin-bottom: 15px;
+
+  label {
+    display: block;
+    font-size: 1.4em;
+    border-bottom: 1px solid $gray_color;
+    margin-bottom: 5px;
+  }
+
+  input[type='text'], textarea {
+    width: 99%;
+  }
+
+  textarea {
+    min-height: 180px;
+  }
+
+  &.multiple {
+    input[type='text'], textarea {
+      float: left;
+    }
+  }
+  .line {
+    margin-bottom: 12px;
+  }
+}
+
+.span8 { width: 80% !important; }
+.span5 { width: 47% !important; margin: 0 1%; }
+.span3 { width: 30% !important; }
+
 .float_left {
   float: left;
+}
+
+.float_right {
+  float: right;
+}
+
+nav.list {
+  margin-top: 30px;
+
+  .row {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 12px;
+    margin: 0px;
+    border-top: 1px solid $gray_color;
+  }
+
+  .row:last-child {
+    border-bottom: 1px solid $gray_color;
+  }
 }
 
 .badge {
@@ -65,5 +151,23 @@ pre, code {
   &.blue {
     background-color: $blue_color;
     text-shadow: darken($blue_color, 30%) 0px -1px 0px;
+  }
+}
+
+a.button {
+  color: white;
+  border-radius: 4px;
+  padding: 3px 5px;
+  font-size: 18px;
+  text-decoration: none;
+
+  background-color: $base_color;
+  text-shadow: darken(white, 80%) 0px -1px 0px;
+  box-shadow: 0px 0px 1px 1px lighten($base_color, 50%);
+
+  &.action {
+    background-color: $pink_color;
+    text-shadow: darken($pink_color, 80%) 0px -1px 0px;
+    box-shadow: 0px 0px 1px 1px lighten($pink_color, 50%);
   }
 }

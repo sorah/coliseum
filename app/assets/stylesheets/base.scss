@@ -1,3 +1,6 @@
 $width: 850px;
 $base_color: #1b1e1b;
+$link_color: mix(cyan, lighten($base_color, 10%), 20%);
 $blue_color: mix(cyan, #1b1b1b, 60%);
+$gray_color: lighten(#1b1e1b, 60%);
+$pink_color: darken(mix(pink, #1b1b1b, 80%), 20%);

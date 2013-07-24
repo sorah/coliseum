@@ -1,4 +1,6 @@
 Coliseum::Application.routes.draw do
+  resources :problems
+
   resources :users, except: %i(create new) do
     member do
       put 'promote' => :promote

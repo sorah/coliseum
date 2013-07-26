@@ -30,7 +30,8 @@
           %header
             %h5
               - icon_class = {success: 'icon-ok-sign',
-                              failed:  'icon-remove-sign'}[judge[:result].to_sym]
+                              failed:  'icon-remove-sign',
+                              tester_error: 'icon-question-sign'}[judge[:result].to_sym]
 
               %i{class: icon_class}
               %span Judge ##{index.succ}

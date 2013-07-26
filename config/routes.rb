@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Coliseum::Application.routes.draw do
   resources :submissions, except: %i(destroy update edit)
 
@@ -27,6 +29,15 @@ Coliseum::Application.routes.draw do
     get ':provider/callback' => :auth_callback, as: :auth_callback
     post ':provider/callback' => :auth_callback
   end
+
+  mount({Sidekiq::Web => '/sidekiq', constraints: Class.new {
+    def matches?(request)
+      return false unless request.session[:user_id]
+      User.find(request.session[:user_id]).staff?
+    rescue ActiveRecord::RecordNotFound
+      return false
+    end
+  }.new})
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

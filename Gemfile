@@ -34,6 +34,12 @@ gem 'settingslogic'
 
 gem 'puma'
 
+group :sidekiq do
+  gem 'sidekiq'
+  gem 'slim', '>= 1.1.0', require: nil
+  gem 'sinatra', '>= 1.3.0', require: nil
+end
+
 gem 'haml-rails'
 
 gem 'font-awesome-rails'

@@ -6,6 +6,11 @@ class Submission < ActiveRecord::Base
 
   serialize :judge_result, Array
 
+  def kick_judge
+    JudgeWorker.perform_async(self.id)
+  end
+  after_create :kick_judge
+
   def judge_status
     attributes["judge_status"].try(&:to_sym) || :pending
   end

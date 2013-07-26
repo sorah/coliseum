@@ -1,0 +1,8 @@
+%h1 Listing submissions
+
+- @submissions.each do |submission|
+  = render 'submission', submission: submission, show_judges: false
+
+%br
+
+= link_to 'New Submission', new_submission_path

@@ -1,0 +1,9 @@
+- content_for(:title) { "Submissions for #{@problem.title}"}
+
+%h2 Submissions for #{link_to @problem.title, @problem}
+
+%section.submissions
+  - @submissions.each do |submission|
+    = render 'submissions/submission', submission: submission, show_judges: false
+
+%p= link_to 'Back', @problem

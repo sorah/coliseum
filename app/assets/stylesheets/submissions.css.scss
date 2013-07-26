@@ -1,0 +1,67 @@
+@import "base.scss";
+
+.submission {
+  & > header {
+    span {
+      margin-left: 6px;
+    }
+  }
+
+  &.success {
+    & > header i {
+      color: $green_color;
+    }
+  }
+
+  &.failed {
+    & > header i {
+      color: $red_color;
+    }
+  }
+
+  .judges {
+    .judge {
+      margin-top: 30px;
+
+      &.success {
+        & > header i {
+          color: $green_color;
+        }
+      }
+
+      &.failed {
+        & > header i {
+          color: $red_color;
+        }
+      }
+
+      h5 {
+        padding-left: 12px;
+
+        & > span {
+          padding-left: 6px;
+        }
+      }
+
+      & > header {
+        margin-bottom: 18px;
+      }
+
+      h6 {
+        padding-left: 0;
+        margin-left: 0;
+        padding-top: 0;
+        margin-top: 0;
+        margin-bottom: 5px;
+      }
+
+      .float_left {
+        width: 49%;
+      }
+
+      .input {
+        padding-right: 2%;
+      }
+    }
+  }
+}

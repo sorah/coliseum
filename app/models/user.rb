@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :problems
+  has_many :submissions
 
   def staff?() self.staff end
   def shown_name() self.name || self.nick end

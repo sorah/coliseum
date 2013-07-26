@@ -1,0 +1,55 @@
+- show_judges = true if show_judges.nil?
+
+- user    = submission.user
+- problem = submission.problem
+
+%section.submission{class: submission.judge_status}
+  %header
+    %h3
+      - icon_class = {pending: 'icon-spinner icon-spin',
+                      judging: 'icon-cog icon-spin',
+                      success: 'icon-ok-sign',
+                      failed:  'icon-remove-sign'}[submission.judge_status.to_sym]
+      %i{class: icon_class}
+      %span
+        #{link_to "##{submission.id}", submission}
+        for
+        #{link_to "#{submission.problem.title}", submission.problem}
+        by
+        #{link_to user.shown_name, user}
+
+  %section.code
+    %pre.code= submission.code
+
+  - if show_judges && !submission.judge_result.empty?
+    %section.judges
+      %h4 Judges
+
+      - submission.judge_result.each_with_index do |judge, index|
+        %section.judge{class: judge[:result]}
+          %header
+            %h5
+              - icon_class = {success: 'icon-ok-sign',
+                              failed:  'icon-remove-sign'}[judge[:result].to_sym]
+
+              %i{class: icon_class}
+              %span Judge ##{index.succ}
+          .clearfix
+            %section.float_left.input
+              %h6 Input
+              %pre.code= judge[:input]
+            %section.float_left
+              %section.output
+                %h6 Output
+                %pre.code= judge[:output]
+              %section.error
+                %h6 Error
+                %pre.code= judge[:error]
+
+
+
+
+
+
+
+

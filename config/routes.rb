@@ -1,5 +1,11 @@
 Coliseum::Application.routes.draw do
-  resources :problems
+  resources :submissions, except: %i(destroy update edit)
+
+  resources :problems do
+    member do
+      get :submissions
+    end
+  end
 
   resources :users, except: %i(create new) do
     member do

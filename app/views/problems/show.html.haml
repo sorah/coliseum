@@ -10,19 +10,26 @@
 %section.tests
   %header
     %h3 Tests
-    - @problem.test_examples.each_with_index do |test, index|
-      %section.test
-        %h4 Test ##{index.succ}
-        .block.input
-          %h5 Input
-          %pre.code= test.input
-        .block.tester
-          %h5 Tester
-          %pre.code= test.tester
+
+  - @problem.test_examples.each_with_index do |test, index|
+    %section.test
+      %h4 Test ##{index.succ}
+      .block.input
+        %h5 Input
+        %pre.code= test.input
+      .block.tester
+        %h5 Tester
+        %pre.code= test.tester
 
 %section.submit
+  %header
+    %h3 Submit
 
-%section.submissions
+  = render 'submissions/form', submission: @problem.submissions.build, show_problem_field: false
+
+  %p
+    See
+    = link_to 'all submissions for this problem', submissions_problem_path(@problem)
 
 - if current_user.try(:staff)
   %p= link_to 'Edit', edit_problem_path(@problem)

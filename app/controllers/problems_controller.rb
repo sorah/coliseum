@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show, :edit, :update, :destroy]
+  before_action :set_problem, only: [:show, :edit, :update, :destroy, :submissions]
   before_action :check_staff_privilege, only: [:edit, :update, :destroy, :create, :new]
 
   # GET /problems
@@ -11,6 +11,10 @@ class ProblemsController < ApplicationController
   # GET /problems/1
   # GET /problems/1.json
   def show
+  end
+
+  def submissions
+    @submissions = @problem.submissions.order('id DESC')
   end
 
   # GET /problems/new

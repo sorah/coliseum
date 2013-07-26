@@ -10,4 +10,12 @@ class ApplicationController < ActionController::Base
     @current_user = nil
   end
   helper_method :current_user
+
+  private
+
+  def check_logged_in
+    unless current_user
+      return render nothing: true, status: :unauthorized
+    end
+  end
 end

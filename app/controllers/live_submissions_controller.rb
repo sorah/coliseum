@@ -14,28 +14,38 @@ class LiveSubmissionsController < ApplicationController
   def do_streaming(detailed = nil)
     response.headers['Content-Type'] = 'text/event-stream'
 
+    $stderr.puts "#{Thread.current.object_id}: Stream opend"
     response.stream.write "event: connected\n\n"
 
     th = Thread.new do
-      Submission.stream do |submission|
-        payload = {submission_id: submission.id,
-                   html: render_to_string(
-                           partial: 'submissions/submission',
-                           locals: {
-                             submission: submission,
-                             show_judges: !!detailed,
-                           }
-                         )
-                  }
-        response.stream.write "data: #{payload.to_json}\n\n"
+      begin
+        Submission.stream do |submission|
+          payload = {submission_id: submission.id,
+                    html: render_to_string(
+                            partial: 'submissions/submission',
+                            locals: {
+                              submission: submission,
+                              show_judges: !!detailed,
+                            },
+                            formats: [:html]
+                          )
+                    }
+          response.stream.write "event: submission\ndata: #{payload.to_json}\n\n"
+          $stderr.puts "#{Thread.current.object_id}: Sending event"
+        end
+      rescue Exception => e
+        $stderr.puts "#{Thread.current.object_id}: Error on subscribe thread: #{e.inspect}"
+        $stderr.puts e.backtrace
       end
     end
 
     loop do
-      #return unless th && th.alive?
-      response.stream.write "event: keepalive\n\n"
+      return unless th && th.alive?
+      $stderr.puts "#{Thread.current.object_id}: keepalive"
+      response.stream.write "event: keepalive\ndata: {}\n\n"
       sleep 10
     end
+    $stderr.puts "#{Thread.current.object_id}: Finish"
   rescue IOError, Errno::EPIPE
   ensure
     th.kill if th && th.alive?

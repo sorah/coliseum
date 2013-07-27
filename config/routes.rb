@@ -1,7 +1,12 @@
 require 'sidekiq/web'
 
 Coliseum::Application.routes.draw do
-  resources :submissions, except: %i(destroy update edit)
+  resources :submissions, except: %i(destroy update edit) do
+    collection do
+      get :stream, to: 'live_submissions#stream'
+      get :detailed_stream, to: 'live_submissions#detailed_stream'
+    end
+  end
 
   resources :problems do
     member do

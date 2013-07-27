@@ -20,6 +20,14 @@
   }
 
   .judges {
+    display: none;
+  }
+
+  &.detailed .judges {
+    display: block;
+  }
+
+  .judges {
     .judge {
       margin-top: 30px;
 

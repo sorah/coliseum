@@ -3,7 +3,7 @@
 - user    = submission.user
 - problem = submission.problem
 
-%section.submission{class: submission.judge_status}
+%section.submission{class: "#{submission.judge_status} #{show_judges ? 'detailed' : ''} submission_#{submission.id}", data: {submission_id: submission.id}}
   %header
     %h3
       - icon_class = {pending: 'icon-spinner icon-spin',

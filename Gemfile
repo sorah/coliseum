@@ -34,6 +34,7 @@ gem 'settingslogic'
 
 gem 'puma'
 
+gem 'redis'
 gem 'sidekiq'
 group :sidekiq do
   gem 'slim', '>= 1.1.0', require: nil

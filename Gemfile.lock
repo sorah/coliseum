@@ -188,6 +188,7 @@ DEPENDENCIES
   omniauth-github
   puma
   rails (= 4.0.0)
+  redis
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc

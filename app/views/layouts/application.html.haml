@@ -12,7 +12,19 @@
     %h1= title.present? ? "#{title} - Coliseum": "Coliseum"
 
     #container
-      %header
+      %header.main_header
         .logo
           Coliseum
-          = yield
+        %nav
+          %span= link_to 'SUBMISSIONS', submissions_path
+          %span= link_to 'PROBLEMS', problems_path
+          %span= link_to 'LEADERBOARD', leaderboard_path
+
+          %span= "|"
+
+          - if current_user
+            %span= link_to current_user.nick, current_user
+            %span= link_to 'SIGN OUT', sessions_path, method: :destroy
+          - else
+            %span= link_to 'SIGN IN', '/auth/github'
+      = yield

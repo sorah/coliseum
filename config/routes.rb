@@ -14,7 +14,7 @@ Coliseum::Application.routes.draw do
     end
   end
 
-  resources :users, except: %i(create new) do
+  resources :users, except: %i(create new index) do
     member do
       put 'promote' => :promote
       put 'demote' => :demote
@@ -25,7 +25,9 @@ Coliseum::Application.routes.draw do
     end
   end
 
-  resources :sessions, only: %i(new destroy) do
+  get :leaderboard, to: 'users#leaderboard', as: :leaderboard
+
+  resource :sessions, only: %i(new destroy) do
     get 'signout' => :signout
   end
 

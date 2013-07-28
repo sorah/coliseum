@@ -33,6 +33,7 @@ gem 'omniauth-github'
 gem 'settingslogic'
 
 gem 'puma'
+gem 'mina'
 
 gem 'redis'
 gem 'sidekiq'

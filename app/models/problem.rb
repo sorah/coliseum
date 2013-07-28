@@ -6,6 +6,8 @@ class Problem < ActiveRecord::Base
 
   serialize :test_examples, Array
 
+  paginates_per 20
+
   def test_examples
     (self.attributes["test_examples"] || []).map.with_index do |e, i|
       TestExample.new(e, i)

@@ -8,6 +8,8 @@ class Submission < ActiveRecord::Base
 
   serialize :judge_result, Array
 
+  paginates_per 10
+
   class << self
     def stream
       Redis.current.subscribe(REDIS_CHANNEL) do |on|

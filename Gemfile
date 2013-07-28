@@ -42,6 +42,7 @@ group :sidekiq do
 end
 
 gem 'haml-rails'
+gem 'kaminari'
 
 gem 'font-awesome-rails'
 

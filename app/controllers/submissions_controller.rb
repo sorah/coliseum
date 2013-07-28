@@ -5,7 +5,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions
   # GET /submissions.json
   def index
-    @submissions = Submission.order('id DESC').all
+    @submissions = Submission.order('id DESC').page(params[:page])
   end
 
   # GET /submissions/1

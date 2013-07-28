@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.color-2.1.2.min
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .

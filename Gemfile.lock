@@ -76,6 +76,7 @@ GEM
     minitest (4.7.5)
     multi_json (1.7.7)
     multipart-post (1.2.0)
+    mysql2 (0.3.13)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -188,6 +189,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
+  mysql2
   omniauth
   omniauth-github
   puma

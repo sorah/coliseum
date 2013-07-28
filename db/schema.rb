@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20130726134725) do
     t.datetime "updated_at"
   end
 
-  add_index "problems", ["user_id"], name: "index_problems_on_user_id"
+  add_index "problems", ["user_id"], name: "index_problems_on_user_id", using: :btree
 
   create_table "submissions", force: true do |t|
     t.integer  "problem_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20130726134725) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["nick"], name: "index_users_on_nick"
-  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid"
+  add_index "users", ["nick"], name: "index_users_on_nick", using: :btree
+  add_index "users", ["provider", "uid"], name: "index_users_on_provider_and_uid", using: :btree
 
 end

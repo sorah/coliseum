@@ -4,16 +4,15 @@
     %meta{charset: 'utf-8'}
     %link{href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Source+Code+Pro:400,700', rel: 'stylesheet', type: 'text/css'}
     - title = yield(:title)
-    %title= title ? "#{title} - Coliseum": "Coliseum"
+    %title= title.present? ? "#{title} - Coliseum": "Coliseum"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
+    %h1= title.present? ? "#{title} - Coliseum": "Coliseum"
+
     #container
       %header
         .logo
           Coliseum
-        %h1
-          %span{style: 'display: none;'} Coliseum -
-          = title
-      = yield
+          = yield

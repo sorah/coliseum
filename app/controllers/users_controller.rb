@@ -40,4 +40,8 @@ class UsersController < ApplicationController
   def edit
     # TODO
   end
+
+  def leaderboard
+    @users = User.leaderboard
+  end
 end

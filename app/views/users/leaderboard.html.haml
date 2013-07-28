@@ -1,0 +1,15 @@
+- content_for(:title) { "Leaderboard" }
+
+
+%section.leaderboard
+  %header
+    %h2 Leaderboard
+
+  %nav.list
+    - @users.each_with_index do |user, index|
+      .row.clearfix
+        %span.rank #{index.succ}.
+        = link_to user.shown_name, user
+        .float_right= user.success_count
+
+

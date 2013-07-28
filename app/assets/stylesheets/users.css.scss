@@ -23,3 +23,17 @@
     margin-right: 30px;
   }
 }
+
+.leaderboard {
+  .list {
+    .row {
+      font-size: 1.3em;
+      * { font-size: 1.0em; }
+      .rank { margin-right: 12px; }
+
+      .float_right {
+        font-size: 0.9em;
+      }
+    }
+  }
+}

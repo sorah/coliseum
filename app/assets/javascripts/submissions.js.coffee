@@ -21,7 +21,8 @@ prepare = ->
   submissions_stream.addEventListener("submission", (e) ->
     payload = JSON.parse(e.data)
     updated_submission = $(payload.html)
-    $(".submission_#{payload.submission_id}").each( ->
+    target = $(".submission_#{payload.submission_id}")
+    target.each( ->
       submission = $(this)
       submission.html(updated_submission.html())
       detailed = submission.hasClass('detailed')
@@ -32,6 +33,19 @@ prepare = ->
       else
         submission.removeClass('detailed')
     )
+
+    if 0 < target.length
+      $(document).add(target).trigger("submissions:change", {
+         id: payload.submission_id,
+         target: target,
+         elem: updated_submission
+      })
+    else
+      $(document).trigger("submissions:new", {
+        id: payload.submission_id,
+        elem: updated_submission
+      })
+
   , false)
 
   #submissions_stream.addEventListener("keepalive", (e) ->

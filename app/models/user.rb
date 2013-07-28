@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
             'submissions.user_id = users.id ' \
             'AND submissions.judge_status = "success"') \
       .select('*, count(submissions.id) AS success_count') \
+      .group('users.id')
       .order('success_count DESC')
   }
 

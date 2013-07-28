@@ -22,6 +22,7 @@
       = f.fields_for :test_examples, TestExample.new({}, @problem.test_examples.size), child_index: @problem.test_examples.size do |fields|
         = fields.text_field :input, placeholder: 'input', class: 'span5'
         = fields.text_field :tester, placeholder: 'tester', class: 'span5'
+      %p.info Tester is Ruby code that returns Boolean. Test target's stdout will be set in local variable `out` as String.
 
   .field.block
     = f.label :source

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130726134725) do
+ActiveRecord::Schema.define(version: 20130728222334) do
 
   create_table "problems", force: true do |t|
     t.string   "title"
@@ -36,6 +36,11 @@ ActiveRecord::Schema.define(version: 20130726134725) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "submissions", ["judge_status"], name: "index_submissions_on_judge_status", using: :btree
+  add_index "submissions", ["problem_id"], name: "index_submissions_on_problem_id", using: :btree
+  add_index "submissions", ["user_id", "judge_status"], name: "index_submissions_on_user_id_and_judge_status", using: :btree
+  add_index "submissions", ["user_id"], name: "index_submissions_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "provider"

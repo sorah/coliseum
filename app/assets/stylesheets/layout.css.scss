@@ -70,23 +70,53 @@ pre {
   margin-left: auto;
   margin-right: auto;
 
-  & > header {
+  .main_header {
     height: 90px;
     margin-bottom: 50px;
+    text-align: justify;
+    text-transform: uppercase;
 
     .logo {
       font-size: 58px;
-      text-transform: uppercase;
       text-shadow: mix($base_color, #ccc, 30%) 0px -1px 0px;
       font-weight: bold;
+      margin: 0;
       margin-bottom: -10px;
+      padding: 0;
+      vertical-align: middle;
     }
 
-    h1 {
+    nav {
+      vertical-align: middle;
       margin: 0;
-      font-weight: normal;
+      padding: 0;
+
+      *, & { font-size: 20px; }
+
+      span {
+        margin: 0 12px;
+      }
+    }
+
+    .logo, nav {
+      display: inline-block;
+      height: 90px;
+      &:before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        height: 100%;
+      }
+
+    }
+
+    &:after {
+      content: '';
+      display: inline-block;
+      width: 100%;
     }
   }
+
 }
 
 .clearfix {

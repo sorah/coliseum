@@ -24,7 +24,7 @@
 
           - if current_user
             %span= link_to current_user.nick, current_user
-            %span= link_to 'SIGN OUT', sessions_path, method: :destroy
+            %span= link_to 'SIGN OUT', sessions_path, method: :delete
           - else
             %span= link_to 'SIGN IN', '/auth/github'
       = yield

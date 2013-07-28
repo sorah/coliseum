@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 
 Coliseum::Application.routes.draw do
+  root to: 'top#index'
+
   resources :submissions, except: %i(destroy update edit) do
     collection do
       get :stream, to: 'live_submissions#stream'

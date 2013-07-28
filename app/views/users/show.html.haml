@@ -21,4 +21,7 @@
 
 %section.submissions
   %header
-    %h3 Submissions
+    %h2 Submissions
+
+  - @user.submissions.order('id DESC').each do |submission|
+    = render 'submissions/submission', submission: submission, show_judges: false

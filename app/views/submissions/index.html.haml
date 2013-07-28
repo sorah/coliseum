@@ -1,7 +1,8 @@
-%h1 Listing submissions
+- content_for(:title) { 'Submissions' }
 
-- @submissions.each do |submission|
-  = render 'submission', submission: submission, show_judges: false
+%section.submissions{data: {live_update: true}}
+  - @submissions.each do |submission|
+    = render 'submission', submission: submission, show_judges: false
 
 %br
 

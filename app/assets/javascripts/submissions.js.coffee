@@ -56,6 +56,7 @@ prepare = ->
 jQuery ->
   prepare()
   $(document).on("page:change", prepare)
+  $(document).on("submissions:change", (e, d) -> console.log(d))
   $(document).on("submissions:new", (e, d) ->
     console.log(d)
     d.elem.hide()

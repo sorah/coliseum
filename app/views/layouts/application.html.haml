@@ -1,15 +1,16 @@
 !!! 5
 %html
+  - title = yield(:title)
+  - formatted_title = title.present? ? "#{title} - coliseum.sorah.jp": "coliseum.sorah.jp"
   %head
     %meta{charset: 'utf-8'}
     %link{href: 'http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Source+Code+Pro:400,700', rel: 'stylesheet', type: 'text/css'}
-    - title = yield(:title)
-    %title= title.present? ? "#{title} - Coliseum": "Coliseum"
+    %title= formatted_title
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    %h1= title.present? ? "#{title} - Coliseum": "Coliseum"
+    %h1= formatted_title
 
     #container
       %header.main_header

@@ -44,6 +44,7 @@ end
 
 gem 'haml-rails'
 gem 'kaminari'
+gem 'redcarpet'
 
 gem 'font-awesome-rails'
 

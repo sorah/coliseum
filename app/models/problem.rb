@@ -1,3 +1,4 @@
+require 'redcarpet'
 class Problem < ActiveRecord::Base
   belongs_to :user
   has_many :submissions
@@ -7,6 +8,17 @@ class Problem < ActiveRecord::Base
   serialize :test_examples, Array
 
   paginates_per 20
+
+  def rendered_body
+    Redcarpet::Markdown.new(Redcarpet::Render::HTML,
+                            no_intra_emphasis: true,
+                            tables: true,
+                            fenced_code_blocks: true,
+                            autolink: true,
+                            lax_spacing: true) \
+                       .render(self.body) \
+                       .html_safe
+  end
 
   def test_examples
     (self.attributes["test_examples"] || []).map.with_index do |e, i|

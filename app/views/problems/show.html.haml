@@ -2,34 +2,35 @@
 
 - content_for(:title) { "Problem: #{@problem.title}"}
 
-%section.problem
-  %header
-    %h2= @problem.title
-  %section.body= @problem.rendered_body
+- cache("problems-#{@problem.id}-#{@problem.updated_at.to_i}") do
+  %section.problem
+    %header
+      %h2= @problem.title
+    %section.body= @problem.rendered_body
 
-%section.tests
-  %header
-    %h3 Tests
+  %section.tests
+    %header
+      %h3 Tests
 
-  - @problem.test_examples.each_with_index do |test, index|
-    %section.test
-      %h4 Test ##{index.succ}
-      .block.input
-        %h5 Input
-        %pre.code= test.input
-      .block.tester
-        %h5 Tester
-        %pre.code= test.tester
+    - @problem.test_examples.each_with_index do |test, index|
+      %section.test
+        %h4 Test ##{index.succ}
+        .block.input
+          %h5 Input
+          %pre.code= test.input
+        .block.tester
+          %h5 Tester
+          %pre.code= test.tester
 
-%section.submit
-  %header
-    %h3 Submit
+  %section.submit
+    %header
+      %h3 Submit
 
-  = render 'submissions/form', submission: @problem.submissions.build, show_problem_field: false
+    = render 'submissions/form', submission: @problem.submissions.build, show_problem_field: false
 
-  %p
-    See
-    = link_to 'all submissions for this problem', submissions_problem_path(@problem)
+    %p
+      See
+      = link_to 'all submissions for this problem', submissions_problem_path(@problem)
 
 - if current_user.try(:staff)
   %p= link_to 'Edit', edit_problem_path(@problem)

@@ -23,7 +23,7 @@ class Judge
     Rails.logger.info "Judge(#{@tag}) target result: #{result.inspect}"
     return result unless target.success?
 
-    tester_code = "out = #{result[:output].to_s.inspect}\np(#{@test_example.tester})"
+    tester_code = "out = #{result[:output].to_s.inspect}\np(-> { #{@test_example.tester} }.call)"
     Rails.logger.debug "Judge(#{@tag}) executing tester: #{tester_code.inspect}"
 
     tester = LLEval.new(tester_code).run
@@ -39,7 +39,7 @@ class Judge
       return result
     end
 
-    result[:result] = tester.stdout.chomp == 'true' ? :success : :failed
+    result[:result] = ['nil', 'false'].include?(tester.stdout.chomp) ? :failed : :success
 
     Rails.logger.info "Judge(#{@tag}) -- Finishing test: #{result.inspect}"
     result

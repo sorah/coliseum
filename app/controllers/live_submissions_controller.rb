@@ -13,6 +13,7 @@ class LiveSubmissionsController < ApplicationController
 
   def do_streaming(detailed = nil)
     response.headers['Content-Type'] = 'text/event-stream'
+    response.headers['X-Accel-Buffering'] = 'no'
 
     $stderr.puts "#{Thread.current.object_id}: Stream opend"
     response.stream.write "event: connected\n\n"

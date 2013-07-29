@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
     joins('INNER JOIN submissions ON ' \
             'submissions.user_id = users.id ' \
             'AND submissions.judge_status = "success"') \
-      .select('*, count(submissions.id) AS success_count') \
+      .select('users.*, COUNT(DISTINCT submissions.problem_id) AS solved_problems_count') \
       .group('users.id')
-      .order('success_count DESC')
+      .order('solved_problems_count DESC')
   }
 
   def staff?() self.staff end

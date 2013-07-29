@@ -7,6 +7,10 @@ submission_onchange = (e, d) ->
         .animate({'background-color': 'white'}, 300)
 
 prepare = ->
+  $("form").on("submit", ->
+    submissions_stream.close() if submissions_stream
+  )
+
   if 0 < $(".submission.detailed").length
     if submissions_stream && submissions_stream.url.match(/detailed_stream$/)
       return

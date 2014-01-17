@@ -62,6 +62,10 @@ group :development, :test do
   gem 'rspec-rails'
 end
 
+group :cap do
+  gem 'capistrano-rails', '~> 1.1.1'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
